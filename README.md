@@ -1,4 +1,4 @@
-# Optimización de Rutas de Última Milla
+# Riesgo de Incumplimiento por Zona en Última Milla
 
 Proyecto de portfolio — Fase 1 de **Insight Ops**, mi consultora de datos + IA aplicada a operaciones de reparto y última milla.
 
@@ -12,7 +12,7 @@ Antes de tocar un dataset de logística en Python trabajé adentro de una operac
 
 Desde ese lado del mostrador, "una ruta con riesgo de incumplir SLA" no es un concepto abstracto — es la ruta que un dispatcher mira dos veces antes de asignarla, o el reclamo que llega a la tarde porque una parada se demoró más de lo esperado. Este proyecto toma esa pregunta operativa (¿qué rutas o zonas tienen más probabilidad de fallar el SLA, y por qué?) y la lleva al terreno de datos: un modelo que estima ese riesgo por parada, y un dashboard pensado para que alguien en el rol que yo tenía pueda usarlo antes de asignar rutas, no solo para revisarlo después de que el problema ya pasó.
 
-El análisis sí produjo un hallazgo estable y accionable: el riesgo de incumplimiento está fuertemente concentrado a nivel geográfico. La variable de riesgo por zona explica alrededor del 61% de la importancia del modelo, y por sí sola alcanza casi el mismo poder de detección que el modelo completo. Traducido a lenguaje operativo: hoy no se puede anticipar con confianza *qué ruta puntual* va a fallar, pero sí se puede decir *qué zonas concentran el incumplimiento* y por dónde conviene empezar a intervenir. Esa es la conclusión de negocio del proyecto, y es la que el dashboard pone adelante.
+El análisis sí produjo un hallazgo estable y accionable: el riesgo de incumplimiento está fuertemente concentrado a nivel geográfico. La variable de riesgo por zona explica alrededor del 61% de la importancia del modelo, y por sí sola detecta tanto o más que el modelo completo (ver [Resultados del modelo](#resultados-del-modelo)). Traducido a lenguaje operativo: hoy no se puede anticipar con confianza *qué ruta puntual* va a fallar, pero sí se puede decir *qué zonas concentran el incumplimiento* y por dónde conviene empezar a intervenir. Esa es la conclusión de negocio del proyecto, y es la que el dashboard pone adelante.
 
 También es, a propósito, un proyecto honesto sobre sus propias limitaciones. El modelo actual detecta menos de 2 de cada 10 rutas de alto riesgo reales (recall ~18%) — no es apto para uso operativo todavía, y el dashboard lo dice así de claro en vez de maquillarlo. El cuello de botella no es el algoritmo: son apenas 102 rutas de alto riesgo en todo el historial disponible para entrenar. Prefiero mostrar ese límite con números en vez de vender un resultado que no sostendría frente a un cliente o en una entrevista.
 
@@ -21,7 +21,7 @@ Este es el primer proyecto de portfolio de Insight Ops — la fase de credibilid
 ## Resumen técnico
 
 - **Dataset:** [Amazon Last Mile Routing Research Challenge](https://registry.opendata.aws/amazon-last-mile-challenges/) — ~6,112 rutas, ~898,000 paradas.
-- **Problema:** clasificación multiclase de riesgo de incumplimiento de SLA por parada (`Low` / `Medium` / `High`), con fuerte desbalance de clases (`Low` = 1.7% de las paradas).
+- **Problema:** clasificación multiclase de riesgo de incumplimiento de SLA por parada (`Low` / `Medium` / `High`), con fuerte desbalance de clases (`Low` = 1.7% de las rutas: 102 de 6,112).
 - **Stack:** Python (Pandas, NumPy, Scikit-learn), Power BI (modelo tabular + DAX).
 - **Entregables:** EDA con conclusiones de negocio, feature engineering, modelo baseline (regresión logística) e iteración con Random Forest, validación estadística de resultados, y dashboard ejecutivo de 4 páginas en Power BI.
 
