@@ -1,6 +1,6 @@
 # Riesgo de Incumplimiento por Zona en Última Milla
 
-Proyecto de portfolio — Fase 1 de **Insight Ops**, mi consultora de datos + IA aplicada a operaciones de reparto y última milla.
+Proyecto de portfolio — Fase 1 de **Insights Ops**, mi consultora de datos para operaciones logísticas.
 
 ## Objetivo
 
@@ -16,7 +16,7 @@ El análisis sí produjo un hallazgo estable y accionable: el riesgo de incumpli
 
 También es, a propósito, un proyecto honesto sobre sus propias limitaciones. El modelo actual detecta menos de 2 de cada 10 rutas de alto riesgo reales (recall ~18%) — no es apto para uso operativo todavía, y el dashboard lo dice así de claro en vez de maquillarlo. El cuello de botella no es el algoritmo: son apenas 102 rutas de alto riesgo en todo el historial disponible para entrenar. Prefiero mostrar ese límite con números en vez de vender un resultado que no sostendría frente a un cliente o en una entrevista.
 
-Este es el primer proyecto de portfolio de Insight Ops — la fase de credibilidad antes de buscar clientes reales.
+Este es el primer proyecto de portfolio de Insights Ops — la fase de credibilidad antes de buscar clientes reales.
 
 ## Resumen técnico
 
